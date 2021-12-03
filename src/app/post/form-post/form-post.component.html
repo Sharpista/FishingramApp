@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-sm-3" style="margin-top: 40px;">
+    <app-card-profile></app-card-profile>
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-body">
+        <h5 class="card-title">Seguir</h5>
+        <p class="card-text">Editar  Perfil</p>
+        <p class="card-text">Exluir Perfil</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <form [formGroup]="formPost" style="margin-top: 40px;">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <app-input-field
+              class="col-md-4"
+              id="title"
+              label="Title"
+              type="text"
+              formControlName="title"
+            >
+            </app-input-field>
+
+            <app-input-field
+              class="col-md-4"
+              id="description"
+              label="Description"
+              type="text"
+              formControlName="description"
+            >
+            </app-input-field>
+
+            <app-input-field
+              class="col-md-4"
+              id="photo"
+              label="Foto"
+              type="file"
+              formControlName="photo"
+              accept="image/*"
+              (change)="imagePreview($event)"
+            >
+            </app-input-field>
+          </div>
+          <img
+          [src]="img || 'http://placehold.it/180'"
+          class="card-img"
+          alt="..."
+          style="height: 500px; margin-top: 20px;"
+        />
+        </div>
+      </div>
+    </form>
+    <br>
+      <app-posts></app-posts>
+  </div>
+
+  <div class="col-sm-3" style="margin-top: 40px;">
+    <app-card-profile-following>
+
+    </app-card-profile-following>
+  </div>
+
+
+
+</div>
