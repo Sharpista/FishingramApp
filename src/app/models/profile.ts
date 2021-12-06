@@ -1,18 +1,23 @@
 import { EntityBase } from './entity-base';
+import { Photo } from './photo';
 import { PhotoAlbums } from './photoAlbum';
 import { Post } from './post';
 
 export class Profile extends EntityBase {
 
-  nome!: string;
-  email!: string;
-  passwprd!: string;
-  birthDate!: string;
-  profilePicture!: File;
-  posts!: Post[];
-  photoAlbums!: PhotoAlbums[];
-  follows!:Profile[];
-  followings!:Profile[];
-
-
+  Name!: string;
+  Email!: string;
+  Password!: string;
+  BirthDate!: string;
+  ProfilePicture!: Photo;
+  ZipCode!: string;
+  Street!: string;
+  Number!: string | undefined;
+  Complement:string | undefined;
+  City!: string;
+  State!: string;
+  Posts!: Post[] | undefined;
+  PhotoAlbums!: PhotoAlbums[] | undefined;
+  Follows!:Profile[] | undefined;
+  Followings!:Profile[] | undefined;
 }

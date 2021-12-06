@@ -1,3 +1,3 @@
 export abstract  class EntityBase{
-  id!: number
+  id!: undefined
 }

@@ -1,3 +1,6 @@
+import { Photo } from './../../models/photo';
+import { ProfileService } from './../../services/profile.service';
+import { Profile } from './../../models/profile';
 import { map } from 'rxjs/operators';
 import { DropdownService } from './../../services/dropdown.service';
 import { Cidade } from './../../models/cidade';
@@ -5,7 +8,7 @@ import { Estado } from './../../models/estado';
 import { ConsultaCepService } from './../../services/consulta-cep-service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { distinctUntilChanged, EMPTY, switchMap } from 'rxjs';
+import { distinctUntilChanged, empty, EMPTY, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-form-cadastro-profile',
@@ -18,12 +21,15 @@ export class FormCadastroProfileComponent implements OnInit {
   filePath : any;
   estados : Estado[] = [];
   cidades : Cidade[] = [];
+  profile : Profile = new Profile();
+  photo : Photo = new Photo();
 
   constructor(private formBuilder : FormBuilder,
               private cepService: ConsultaCepService,
-              private dropDownService : DropdownService) { }
+              private dropDownService : DropdownService,
+              private profileService : ProfileService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.dropDownService.getEstados().subscribe( estados => this.estados = estados)
 
     this.formProfile = this.formBuilder.group({
@@ -32,35 +38,39 @@ export class FormCadastroProfileComponent implements OnInit {
       email: [null],
       password: [null],
       birthDate: [null],
-      endereco: this.formBuilder.group({
-        cep:[null],
-        rua:[null],
-        number:[null],
-        complemento:[null],
-        cidade:[null],
-        estado:[null]
+      cep:[null],
+      rua:[null],
+      numero:[null],
+      complemento:[null],
+      cidade:[null],
+      estado:[null]
 
-      })
+
     })
-    this.formProfile.get('endereco.cep')?.statusChanges.pipe(
+    this.formProfile.get('cep')?.statusChanges
+    .pipe(
       distinctUntilChanged(),
       switchMap(status => status === 'VALID' ?
-      this.cepService.consultarCEP(this.formProfile.get('endereco.cep')?.value) : EMPTY)
+      this.cepService.consultarCEP(this.formProfile.get('cep')?.value) : EMPTY)
     ).subscribe(dados => dados ? this.popularEndereco(dados) : {});
 
-    this.formProfile.get('endereco.estado')?.valueChanges.pipe(
-      map(estado => this.estados.filter(es => es.sigla === estado)),
-      map(estados => estados && estados.length > 0 ? estados[0].id : EMPTY),
-      switchMap((estadoID : any) => this.dropDownService.getCidades(estadoID))
-    ).subscribe(cidades => this.cidades = cidades)
+    this.formProfile.get('estado')?.valueChanges
+    .pipe(
+      map(estado => this.estados.filter(e => e.sigla === estado)),
+      map(estados => estados && estados.length > 0 ? estados[0].id : empty()),
+      switchMap((estadoId: any) => this.dropDownService.getCidades(estadoId)),
+    )
+    .subscribe(cidades => this.cidades = cidades);
   }
 
   previewPhoto(e: Event){
-    const file = (e.target as HTMLInputElement).files![0];
 
+    const file = (e.target as HTMLInputElement).files![0];
+    console.log(file);
     this.formProfile.patchValue({
       profilePicture:file
     })
+
 
     this.formProfile.get('profilePicture')?.updateValueAndValidity();
 
@@ -68,26 +78,69 @@ export class FormCadastroProfileComponent implements OnInit {
     reader.onload = () =>{
       this.filePath = reader.result as string;
     }
+    this.photo = {
+      id:undefined,
+      fileName : file.name,
+      binaryContent : reader.result,
+      contentType : file.type
+    }
     reader.readAsDataURL(file)
   }
   consultarCEP(){
-    const cep = this.formProfile.get('endereco.cep')?.value;
+    const cep = this.formProfile.get('cep')?.value;
 
     if(cep != null && cep !== ''){
-      this.cepService.consultarCEP(cep)
-      .subscribe(dados => this.popularEndereco(dados))
+      this.resetarForm()
+       this.cepService.consultarCEP(cep).subscribe(dados => this.popularEndereco(dados));
     }
+  }
+  onSubmit(){
+
+
+     this.profile = {
+
+      ProfilePicture : this.photo,
+      BirthDate : this.formProfile.get('birthDate')?.value,
+      Password: this.formProfile.get('password')?.value,
+      ZipCode: this.formProfile.get('cep')?.value,
+      City: this.formProfile.get('cidade')?.value,
+      Complement: this.formProfile.get('complemento')?.value,
+      Email:this.formProfile.get('email')?.value,
+      State: this.formProfile.get('estado')?.value,
+      Name: this.formProfile.get('nome')?.value,
+      Number:this.formProfile.get('numero')?.value,
+      Street: this.formProfile.get('rua')?.value,
+      Followings: undefined,
+      Follows: undefined,
+      PhotoAlbums: undefined,
+      Posts : undefined,
+      id:undefined
+    }
+
+    this.profileService.create(this.profile).subscribe(
+      success => console.log('foi'),
+    );
+
   }
   popularEndereco(dados:any){
 
     this.formProfile.patchValue({
-      endereco:{
         rua: dados.logradouro,
         complemento: dados.complemento,
         bairro: dados.bairro,
         cidade: dados.localidade,
         estado: dados.uf
       }
+    )
+  }
+
+  resetarForm(){
+    this.formProfile.patchValue({
+      rua: null,
+      complemento: null,
+      bairro: null,
+      cidade: null,
+      estado: null
     })
   }
 

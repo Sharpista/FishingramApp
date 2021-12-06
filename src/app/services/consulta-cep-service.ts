@@ -18,10 +18,9 @@ export class ConsultaCepService {
       const validaCEP = /^[0-9]{8}$/
 
       if(validaCEP.test(cep)){
-        return this._http.get(`https://viacep.com.br/ws/${cep}/json/`)
+        return this._http.get(`//viacep.com.br/ws/${cep}/json/`)
       }
     }
-
     return of({})
   }
 }

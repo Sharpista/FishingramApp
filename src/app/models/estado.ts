@@ -1,4 +1,4 @@
-export class Estado {
+export interface Estado {
 
   "id": number;
   "sigla": string;

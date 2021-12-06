@@ -22,6 +22,7 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     ReactiveFormsModule
   ],
+  providers:[],
   exports:[CardProfileComponent, CardProfileFollowingComponent]
 })
 export class ProfileModule { }

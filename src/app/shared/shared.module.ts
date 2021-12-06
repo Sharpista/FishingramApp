@@ -15,6 +15,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   exports:[
     InputFieldComponent,
-  ]
+  ],
 })
 export class SharedModule { }

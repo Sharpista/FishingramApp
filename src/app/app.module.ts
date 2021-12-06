@@ -1,3 +1,4 @@
+import { ConsultaCepService } from './services/consulta-cep-service';
 import { LoginModule } from './login/login.module';
 import { TimelineModule } from './timeline/timeline.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -9,7 +10,6 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileModule } from './profile/profile.module';
-import { CrudService } from './services/crud-service';
 
 @NgModule({
   declarations: [
