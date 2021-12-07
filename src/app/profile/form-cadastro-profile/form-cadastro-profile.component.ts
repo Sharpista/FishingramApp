@@ -1,3 +1,4 @@
+import { Login } from './../../models/login';
 import { Photo } from './../../models/photo';
 import { ProfileService } from './../../services/profile.service';
 import { Profile } from './../../models/profile';
@@ -97,15 +98,19 @@ export class FormCadastroProfileComponent implements OnInit {
   onSubmit(){
 
 
-     this.profile = {
+     const profile = {
 
+      Login :{
+        id:undefined,
+        password: this.formProfile.get('password')?.value,
+        email:this.formProfile.get('email')?.value,
+
+      },
       ProfilePicture : this.photo,
       BirthDate : this.formProfile.get('birthDate')?.value,
-      Password: this.formProfile.get('password')?.value,
       ZipCode: this.formProfile.get('cep')?.value,
       City: this.formProfile.get('cidade')?.value,
       Complement: this.formProfile.get('complemento')?.value,
-      Email:this.formProfile.get('email')?.value,
       State: this.formProfile.get('estado')?.value,
       Name: this.formProfile.get('nome')?.value,
       Number:this.formProfile.get('numero')?.value,
@@ -117,7 +122,7 @@ export class FormCadastroProfileComponent implements OnInit {
       id:undefined
     }
 
-    this.profileService.create(this.profile).subscribe(
+    this.profileService.create(profile as Profile).subscribe(
       success => console.log('foi'),
     );
 

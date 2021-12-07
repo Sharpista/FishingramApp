@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/AuthGuard';
 import { LoginComponent } from './login/login/login.component';
 import { FormCadastroProfileComponent } from './profile/form-cadastro-profile/form-cadastro-profile.component';
 

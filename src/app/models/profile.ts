@@ -1,10 +1,12 @@
 import { EntityBase } from './entity-base';
+import { Login } from './login';
 import { Photo } from './photo';
 import { PhotoAlbums } from './photoAlbum';
 import { Post } from './post';
 
 export class Profile extends EntityBase {
 
+  Login!:Login;
   Name!: string;
   Email!: string;
   Password!: string;

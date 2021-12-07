@@ -2,7 +2,7 @@
 
   <div class="card">
     <div class="card-body">
-      <form>
+      <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
         <app-input-field
         id="email"
         label="Email"
@@ -17,7 +17,7 @@
         formControlName="senha">
         </app-input-field>
         <div class="center">
-          <button class="btn btn btn-success">
+          <button class="btn btn btn-success" type="submit">
             Login
           </button>
 
