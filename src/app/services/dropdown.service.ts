@@ -1,8 +1,8 @@
-import { Cidade } from './../models/cidade';
+import { Cidade } from '../shared/interfaces/cidade';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Estado } from '../models/estado';
 import { map } from 'rxjs/operators';
+import { Estado } from '../shared/interfaces/estado';
 
 @Injectable({
   providedIn: 'root'

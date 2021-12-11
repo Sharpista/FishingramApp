@@ -4,20 +4,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Login } from '../models/login';
 
+const httpOptions = {
+  headers : new HttpHeaders({'Content':'application/json'})
+}
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  mostrarMenuEmitter = new EventEmitter<boolean>();
-   API = `${environment.API}Auth/login`;
+  API = `${environment.API}Auth/auth`;
   constructor(private _http: HttpClient) {
   }
   login(login:Login) : Observable<any>{
-    const options = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'}),
-      observe: 'response' as 'body'
-    }
-    return this._http.post<Login>(this.API, login, options)
+
+    return this._http.post<Login>(this.API, login, httpOptions)
   }
   logout(){
     localStorage.removeItem("jwt");

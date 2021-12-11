@@ -1,0 +1,20 @@
+<div class="col d-flex justify-content-center" style="transform: translate(0%,70%);">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Login</h5>
+      <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+          <app-input-field
+          label="Email"
+          id="email"
+          formControlName="email">
+          </app-input-field>
+          <app-input-field
+          label="Senha"
+          id="senha"
+          formControlName="password">
+          </app-input-field>
+        <button type="submit" class="btn btn-outline">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,17 +1,20 @@
-import { AuthGuard } from './guards/AuthGuard';
-import { ConsultaCepService } from './services/consulta-cep-service';
-import { LoginModule } from './login/login.module';
-import { TimelineModule } from './timeline/timeline.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { TokenStorageService } from './services/token-storage.service';
+import { LoginService } from './services/login.service';
+import { JwtModule } from '@auth0/angular-jwt';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { JwtModule } from '@auth0/angular-jwt';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProfileModule } from './profile/profile.module';
+import { HomeComponent } from './views/home/home.component';
+import { LoginComponent } from './views/login/login.component';
+import { CadastroComponent } from './views/cadastro/cadastro.component';
+import { FeedComponent } from './views/feed/feed.component';
+import { CriarPostComponent } from './views/criar-post/criar-post.component';
 
 export function tokenGetter(){
   return localStorage.getItem('jwt');
@@ -20,6 +23,11 @@ export function tokenGetter(){
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
+    LoginComponent,
+    CadastroComponent,
+    FeedComponent,
+    CriarPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,20 +35,19 @@ export function tokenGetter(){
     SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
-    TimelineModule,
-    ProfileModule,
-    LoginModule,
     JwtModule.forRoot({
       config:{
         tokenGetter : tokenGetter,
-        allowedDomains:["localhost:5001"],
+        allowedDomains : ["localhost:5001"],
         disallowedRoutes:[]
+
       }
     })
 
   ],
-  providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  providers:[LoginService, TokenStorageService,authInterceptorProviders],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
