@@ -1,22 +1,26 @@
-<div class="card" style="width: 800px">
-  <div class="card-body">
+<form [formGroup]="formPost" (ngSubmit)="onSubmit()">
+  <div class="card" style="width: 800px">
+    <div class="card-body">
     <div class="row">
       <div class="col-sm-4">
-        <app-input-field label="Titulo"> </app-input-field>
+        <app-input-field label="Titulo" formControlName="title"> </app-input-field>
       </div>
       <div class="col-sm-4">
-        <app-input-field label="Descricao"> </app-input-field>
+        <app-input-field label="Descricao" formControlName="description"> </app-input-field>
       </div>
       <div class="col-sm-4">
-        <app-input-field label="Foto" type="file"> </app-input-field>
+        <app-input-field label="Foto" type="file" (change)="onFileChange($event)"> </app-input-field>
       </div>
     </div>
     <div style="padding-top: 20px;">
       <img style="height: 400px;"
-      src="../../../assets/Rivers_Fishing_Fog_436425.jpg"
+      [src]="imageURL || '../../../assets/imagem-vazia.png'"
       class="card-img-bottom"
       alt="Camera"
     />
     </div>
+
+    <button class="btn btn-primary" style="margin-top: 10px;" type="submit">Submit</button>
   </div>
 </div>
+</form>

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { InputFieldComponent } from './components/input-field/input-field.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardEsquerdoComponent } from './components/card-esquerdo/card-esquerdo.component';
-import { FeedPostsComponent } from './components/feed-posts/feed-posts.component';
 
 
 
@@ -11,7 +10,6 @@ import { FeedPostsComponent } from './components/feed-posts/feed-posts.component
   declarations: [
     InputFieldComponent,
     CardEsquerdoComponent,
-    FeedPostsComponent,
   ],
   imports: [
     CommonModule,
@@ -21,7 +19,6 @@ import { FeedPostsComponent } from './components/feed-posts/feed-posts.component
   exports:[
     InputFieldComponent,
     CardEsquerdoComponent,
-    FeedPostsComponent
   ],
 
 })

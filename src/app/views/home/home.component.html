@@ -6,26 +6,47 @@
     >
       <!-- Left links -->
       <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/login']">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/cadastro']"
-            >Cadastrar</a
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            [routerLink]="['/login']"
+            >Login</a
           >
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLink]="['/cadastro']"
+            >Registrar</a
+          >
+        </li>
+
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLink]="['/cadastro']"
+            >Meu Perfil</a
+          >
+        </li>
+
+        <li class="nav-item" *ngIf="isLoggedIn">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/feed']"
-            >Feed</a
+            >Feed de Notícias</a
+          >
+        </li>
+
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/feed']"
+            >Logout</a
           >
         </li>
       </ul>
     </div>
   </div>
-
 </nav>
 <div class="container-fluid">
- <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>
-
-

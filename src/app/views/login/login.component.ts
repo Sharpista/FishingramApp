@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
+    console.log(this.formLogin.value)
     this.authService.login(this.formLogin.value).subscribe(
       data => {
         this.tokenStorage.saveToken(data.acessToken);
@@ -37,13 +38,16 @@ export class LoginComponent implements OnInit {
 
         this.falhouLogin = false;
         this.estaLogado = true;
-
         this.router.navigate(['/feed'])
+        this.reloadPage();
       },
       err =>{
         this.errorMessage = err.error.message;
         this.falhouLogin = true;
       }
     )
+  }
+  reloadPage(): void {
+    window.location.reload();
   }
 }

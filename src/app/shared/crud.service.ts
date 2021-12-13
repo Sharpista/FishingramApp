@@ -1,10 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { take } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
+
+const token = {
+  token : localStorage.getItem('auth-user')
+}
 const httpOptions = {
-  headers : new HttpHeaders({'Content':'application/json'})
+  headers : new HttpHeaders({'Content':'application/json'}),
 }
 export abstract class CrudService<T> {
+
 
 
   constructor(protected http: HttpClient,  private api_url:string) { }

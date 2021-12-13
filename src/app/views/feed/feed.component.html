@@ -1,11 +1,33 @@
 <div class="container" style="padding-top: 30px;">
   <div class="row">
     <div class="col-sm-3">
-      <app-card-esquerdo></app-card-esquerdo>
+    <app-card-esquerdo
+      [foto]="currentUser.login['profilePicture']"
+      [nome]="currentUser.login['name'] "
+      [seguidores]="'0'"></app-card-esquerdo>
     </div>
     <div class="col-sm-4">
       <app-criar-post></app-criar-post>
-      <app-feed-posts></app-feed-posts>
+
+      <div *ngFor="let item of posts">
+        <div  style="margin-top: 20px;">
+
+          <div class="card bg-dark text-white" style="width: 800px; height: 300px;">
+            <img
+              [src]="item.photo || '../../../../assets/pesca-esportiva_1.jpg'"
+              class="card-img" style="height: 300px;"
+              alt="Stony Beach"
+            />
+            <div class="card-img-overlay">
+              <h5 class="card-title">{{item.title}}</h5>
+              <p class="card-text">
+                {{item.description}}
+              </p>
+              <p class="card-text">{{item.publishDateTime}}o</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
