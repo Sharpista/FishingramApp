@@ -1,0 +1,61 @@
+<div class="container-fluid d-flex justify-content-center" style="padding-top: 20px;">
+  <div class="card">
+    <div class="card-body" style="width: 800px; height: 500px;">
+      <form [formGroup]="formProfile" >
+      <div class="row">
+        <div class="col-md-6">
+          <app-input-field label="Nome" id="nome" formControlName="name">
+
+          </app-input-field>
+        </div>
+        <div class="col-md-6">
+          <app-input-field label="Data Aniversario" id="dataAniversario" formControlName="birthDate">
+
+          </app-input-field>
+        </div>
+        <div class="col-md-6">
+          <app-input-field label="Email" id="email" formControlName="email">
+
+          </app-input-field>
+        </div>
+        <div class="col-md-6">
+          <app-input-field label="CEP" id="cep" formControlName="zipCode" >
+
+          </app-input-field>
+        </div>
+        <div class="col-md-3">
+          <app-input-field label="Rua" id="rua" formControlName="street">
+
+          </app-input-field>
+        </div>
+        <div class="col-md-3">
+          <app-input-field label="Numero" id="numero" formControlName="number">
+
+          </app-input-field>
+        </div>
+        <div class="col-md-3">
+          <app-input-field label="Complemento" id="complemento" formControlName="complement">
+
+          </app-input-field>
+        </div>
+        <div class="col-md-3">
+          <app-input-field label="Bairro" id="bairro" formControlName="district">
+
+          </app-input-field>
+        </div>
+        <div class="col-md-6">
+          <app-input-field label="Estado" id="estado" formControlName="state">
+
+          </app-input-field>
+        </div>
+
+        <div class="col-md-6">
+          <app-input-field label="Cidade" id="cidade" formControlName="city">
+
+          </app-input-field>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

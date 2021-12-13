@@ -15,6 +15,8 @@ import { LoginComponent } from './views/login/login.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
 import { FeedComponent } from './views/feed/feed.component';
 import { CriarPostComponent } from './views/criar-post/criar-post.component';
+import { MeuPerfilComponent } from './views/meu-perfil/meu-perfil.component';
+import { AlbumFotosComponent } from './views/album-fotos/album-fotos.component';
 
 export function tokenGetter(){
   return localStorage.getItem('jwt');
@@ -28,6 +30,8 @@ export function tokenGetter(){
     CadastroComponent,
     FeedComponent,
     CriarPostComponent,
+    MeuPerfilComponent,
+    AlbumFotosComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,31 @@
+<div
+  class="container-fluid d-flex justify-content-center"
+  style="padding-top: 20px"
+>
+  <div class="card">
+    <div class="card-body" style="width: 800px;">
+      <form [formGroup]="formPhotoAlbums" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6">
+          <app-input-field label="Descricao" id="descricao" formControlName="description"> </app-input-field>
+        </div>
+        <div class="col-md-6">
+          <app-input-field label="Fotos" id="fotos" type="file" multiple>
+          </app-input-field>
+        </div>
+        <button class="btn btn-primary" type="submit" style="margin-top: 10px;">SUBMIT</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<div class="container" style="padding-top: 20px">
+  <div class="row">
+    <div class="col-sm-3" *ngFor="let photoAlbum of photoAlbums">
+      <app-photo-albums-cards
+      [descricao]="photoAlbum.description"
+      [data]="photoAlbum.creationDate">
+      </app-photo-albums-cards>
+    </div>
+  </div>
+</div>

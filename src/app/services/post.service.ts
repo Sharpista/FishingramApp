@@ -24,6 +24,8 @@ export class PostService extends CrudService<Post> {
 
     return this.http.post<Post>(`${environment.API}Post/upload-image/${userId}`, formData).pipe(take(1))
   }
-
+  getAllPostFromUser(id:number){
+    return this.http.get<Post[]>(`${environment.API}Post/allPostFromUser/${id}`).pipe(take(1))
+  }
 
 }

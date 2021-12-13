@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { TokenStorageService } from './../../services/token-storage.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   isLoggedIn = false
-  constructor(private tokenStorageService : TokenStorageService) { }
+  constructor(private tokenStorageService : TokenStorageService,
+              private router : Router) { }
 
   ngOnInit(): void {
 
@@ -18,6 +20,11 @@ export class HomeComponent implements OnInit {
     if(this.isLoggedIn){
       const user = this.tokenStorageService.getUser();
     }
+  }
+
+  logout(){
+    this.tokenStorageService.signOut()
+    this.router.navigateByUrl('/')
   }
 
 }

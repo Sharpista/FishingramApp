@@ -38,8 +38,7 @@ export class LoginComponent implements OnInit {
 
         this.falhouLogin = false;
         this.estaLogado = true;
-        this.router.navigate(['/feed'])
-        this.reloadPage();
+        this.router.navigateByUrl('/feed')
       },
       err =>{
         this.errorMessage = err.error.message;

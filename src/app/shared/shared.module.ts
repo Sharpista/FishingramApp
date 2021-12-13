@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { InputFieldComponent } from './components/input-field/input-field.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardEsquerdoComponent } from './components/card-esquerdo/card-esquerdo.component';
+import { PhotoAlbumsCardsComponent } from './components/photo-albums-cards/photo-albums-cards.component';
 
 
 
@@ -10,6 +11,7 @@ import { CardEsquerdoComponent } from './components/card-esquerdo/card-esquerdo.
   declarations: [
     InputFieldComponent,
     CardEsquerdoComponent,
+    PhotoAlbumsCardsComponent,
   ],
   imports: [
     CommonModule,
@@ -19,6 +21,7 @@ import { CardEsquerdoComponent } from './components/card-esquerdo/card-esquerdo.
   exports:[
     InputFieldComponent,
     CardEsquerdoComponent,
+    PhotoAlbumsCardsComponent
   ],
 
 })
