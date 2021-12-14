@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   logout(){
     this.tokenStorageService.signOut()
-    this.router.navigateByUrl('/')
+    this.router.navigateByUrl('/login')
   }
 
 }
